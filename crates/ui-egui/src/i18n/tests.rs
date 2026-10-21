@@ -160,3 +160,34 @@ fn japanese_covers_the_menus_ribbon_and_status_bar() {
     }
     assert_eq!(ja.translated_strings(), parse_entries(ja.0.source).0.len());
 }
+
+/// The second step's coverage: the dialog bodies, their field labels and messages, the panels and
+/// the File tab's page contents are drawn in Japanese too.
+#[test]
+fn japanese_covers_the_dialogs_and_messages() {
+    let ja = lang("ja");
+    for (english, japanese) in [
+        ("Zoom to", "ズーム"),
+        ("Slides sized for:", "スライドのサイズ:"),
+        ("Orientation:", "スライドの向き:"),
+        ("Find Next", "次を検索"),
+        ("Replace All", "すべて置換"),
+        ("Ignore All", "すべて無視"),
+        ("Add to Dictionary", "辞書に追加"),
+        ("Print layout:", "印刷レイアウト:"),
+        ("Include hidden slides", "非表示のスライドを含める"),
+        ("No pictures yet", "図がまだありません"),
+        ("Font size must be a number", "フォント サイズは数値で入力してください"),
+        ("Line spacing must be a number", "行間は数値で入力してください"),
+        ("Number of columns:", "列数:"),
+        ("Lock aspect ratio", "縦横比を固定"),
+        ("Blank Presentation", "白紙のプレゼンテーション"),
+        ("Copy path", "パスをコピー"),
+        ("Not saved yet", "まだ保存されていません"),
+    ] {
+        assert_eq!(tr(ja, english), japanese, "{english}");
+    }
+    // A string the catalog does not carry still falls back to English.
+    assert_eq!(tr(ja, "A label no catalog has"), "A label no catalog has");
+    assert!(ja.translated_strings() > 800, "{} entries", ja.translated_strings());
+}

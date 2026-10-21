@@ -321,8 +321,9 @@ Detail in [localization-parity.md](localization-parity.md).
 
 - **A Japanese catalog is the first, and most of the UI is still English** (#15, #30; Ukrainian
   PR #34 open). The catalog system, system-language following and the Interface language setting
-  landed with the Japanese catalog (554 entries: menus, ribbon, status bar, command labels and
-  Preferences); dialog bodies, tooltips, help and the File-tab pages still show English. PowerPoint
+  landed with the Japanese catalog (877 entries after the second step: menus, ribbon, status bar,
+  command labels, Preferences and most dialog bodies and messages); some tooltips and help text,
+  and the engine's status/error messages, still show English. PowerPoint
   for Mac ships 26 languages. A new language is its catalog file plus one row in `LANGUAGES`
   (3–16 h plus native review). Beta needs at least Simplified Chinese, Spanish, French, German and
   Japanese (~30–45 h), with Japanese partly there.

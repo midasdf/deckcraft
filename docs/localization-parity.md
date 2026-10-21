@@ -6,9 +6,9 @@ DeckCraft's interface is written in English, and a catalog per language
 (`crates/ui-egui/src/i18n/*.tsv`) translates the strings the UI draws: English strings are the
 keys, so a string without a translation shows in English and coverage grows one entry at a time.
 The `language` setting follows the operating system by default; Preferences ▸ Interface language
-picks English or 日本語 by hand. The Japanese catalog (554 entries) covers the menus, ribbon tabs
-and buttons, status bar, command labels, command palette and the Preferences dialog; most dialog
-bodies and the File-tab page content still show English. Requests: #15 (follow the system
+picks English or 日本語 by hand. The Japanese catalog (877 entries) covers the menus, ribbon tabs
+and buttons, status bar, command labels, command palette, the Preferences dialog and most dialog
+bodies and messages; some tooltips and help text still show English. Requests: #15 (follow the system
 language), #30 and PR #34 (Ukrainian, open). Dimension score: **~8% ready** (estimated: English
 complete, slide-text script support partly there), **55–90 h** to parity plus native-speaker
 review.
@@ -38,7 +38,7 @@ review.
 | French | fr | 0 (0%) | no | full (Latin) | no | none | yes (fr, fr-CA) | 3–5 |
 | Portuguese | pt | 0 (0%) | no | full (Latin) | no | none | yes (pt-BR, pt-PT) | 3–5 |
 | Indonesian | id | 0 (0%) | no | full (Latin) | no | none | yes | 3–5 |
-| Japanese | ja | 554 of ~1,050 (53%) | menus, ribbon, status bar, Preferences and command labels yes; other dialog bodies, tooltips and help no | renders with system or craft-fonts Japanese faces; IME composition (#101); vertical text is rotated, not laid out vertically | no | partial (in review) | yes | 4–7 |
+| Japanese | ja | 877 of ~1,050 (84%) | menus, ribbon, status bar, Preferences, command labels and most dialog bodies and messages yes; some tooltips and help still English | renders with system or craft-fonts Japanese faces; IME composition (#101); vertical text is rotated, not laid out vertically | no | partial (in review) | yes | 2–4 |
 | German | de | 0 (0%) | no | full (Latin) | no | none | yes | 3–5 |
 | Korean | ko | 0 (0%) | no | system Hangul fonts, in the interface too; IME composition (#101) | no | none | yes | 4–7 |
 | Vietnamese | vi | 0 (0%) | no | stacked diacritics through HarfRust | no | none | **no** (Windows only) | 3–5 |
@@ -65,6 +65,7 @@ common misspellings (`crates/engine/src/cmd/review.rs`); see [gaps.md](gaps.md#p
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-22 | minor | Japanese interface, second step: 323 more catalog entries (877 of ~1,050, 84%) for the dialog bodies, their field labels and messages, the Format/selection panes, the File tab's page contents and the About window; the strings drawn by the shared field, check and choice helpers and by the backstage text helpers are translated too, and a catalog test pins the dialog coverage. Some tooltips and help text remain English |
 | 2026-10-21 | major | Japanese interface, first step: the TSV catalog system ported from the sibling apps, system-language following, the Interface language setting (auto | English | 日本語) in Preferences, and 554 Japanese strings covering the menus, ribbon, status bar, command labels, command palette and the Preferences dialog; other dialog bodies still English |
 | 2026-10-14 | minor | IME composition in a table cell is underlined in place; the candidate window sits on that cell's caret |
 | 2026-10-12 | minor | IME composition for Chinese, Japanese and Korean, and interface text in any installed script (#101) |
