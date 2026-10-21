@@ -2501,7 +2501,12 @@ fn date_time_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let format = d.get("format", "datetime1");
     egui::ScrollArea::vertical().max_height(280.0).min_scrolled_height(220.0).auto_shrink([false, false]).show(ui, |ui| {
         for (kind, sample) in &rows {
-            if ui.selectable_label(format == *kind, sample).clicked() {
+            // Japanese has no abbreviated month or day names, so several kinds compute the same
+            // text (`datetime3`, `datetime4` and `datetime5` all read e.g. "2026年10月9日"). The
+            // row inserts its kind, so name the kind whenever the sample alone is ambiguous.
+            let ambiguous = rows.iter().filter(|(_, other)| other == sample).count() > 1;
+            let label = if ambiguous { format!("{sample} ({kind})") } else { sample.clone() };
+            if ui.selectable_label(format == *kind, label).clicked() {
                 d.fields.insert("format".into(), (*kind).to_string());
             }
         }
