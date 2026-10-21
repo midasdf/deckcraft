@@ -1496,6 +1496,23 @@ fn east_asian_line_breaking_off_relaxes_the_non_starter_rule() {
 }
 
 #[test]
+fn east_asian_line_breaking_off_keeps_the_unicode_prohibitions_that_are_not_the_non_starter_rule() {
+    // Relaxing 禁則 must lift only the rule that keeps a non-starter off the start of a line
+    // (LB21, and LB16 before a non-starter). The same position can be prohibited for another
+    // reason — an opening bracket ends no line (LB14), a word joiner binds (LB11), a no-break
+    // space binds (LB12) — and those prohibitions still hold with `eaLnBrk` off.
+    for text in ["漢「ッ」", "漢（ッ）", "漢\u{2060}ッ", "漢\u{00A0}ッ", "漢\u{202F}ッ"] {
+        let (on, _) = break_opportunities(text, false, true);
+        let (off, _) = break_opportunities(text, false, false);
+        assert!(!on[2] && !off[2], "the break before the non-starter stays prohibited: {text:?}");
+    }
+    // With nothing else binding the position, the same non-starter may start a line when 禁則 is
+    // off: the setting has not stopped working.
+    let (allowed, _) = break_opportunities("漢ッ", false, false);
+    assert!(allowed[1], "with 禁則 off a line may start at a small kana");
+}
+
+#[test]
 fn east_asian_line_breaking_keeps_the_default_layout() {
     // The default (`eaLnBrk` absent) wraps exactly as before: a non-starter stays on the line it
     // belongs to and never starts the next one.
