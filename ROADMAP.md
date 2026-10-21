@@ -2,7 +2,7 @@
 
 **Stage: alpha** · next: beta, ~20 points and ~120–210 h away
 
-> **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-18 · **Change:** minor (native chart payloads stored in bounded ZIP members; previous: major, community PR wave 2026-10-14: ~60 landed items in the progress log, among them the Font, Paragraph, Photo Album, theme colour and font and Date and Time dialogs, presenter and show controls, the SmartArt Text Pane and PPTX corpus slices; breadth 84% after `cargo xtask parity`, ready stays ~55%, stage stays alpha; duplicated rows and headers folded; previous: minor, hours to ~95% per audience added) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
+> **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-21 · **Change:** minor (Japanese interface, first step: TSV catalogs, system-language following and an Interface language setting; the menus, ribbon, status bar, command labels and Preferences are drawn in Japanese, other dialog bodies still English; previous: minor, native chart payloads stored in bounded ZIP members; previous: major, community PR wave 2026-10-14: ~60 landed items in the progress log, among them the Font, Paragraph, Photo Album, theme colour and font and Date and Time dialogs, presenter and show controls, the SmartArt Text Pane and PPTX corpus slices; breadth 84% after `cargo xtask parity`, ready stays ~55%, stage stays alpha; duplicated rows and headers folded; previous: minor, hours to ~95% per audience added) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
 
 DeckCraft aims at full PowerPoint parity, and to be better: faster, open (a documented zip+JSON
 format plus PPTX), scriptable by agents (CLI, JSON control channel, MCP), and available everywhere
@@ -84,8 +84,9 @@ EMF/SVG pictures, the data-loss and startup-crash bugs (#60, #40, #59) and the b
 
 ## Languages
 
-English only today; no string catalog yet (Ukrainian is in review as PR #34). Detail:
-[docs/localization-parity.md](docs/localization-parity.md).
+English today; the catalog system landed with Japanese as its first catalog (menus, ribbon,
+status bar, command labels and Preferences; other dialog bodies still English), and Ukrainian is
+in review as PR #34. Detail: [docs/localization-parity.md](docs/localization-parity.md).
 
 | Language | Code | UI strings | Status | Hours to full |
 |---|---|---:|---|---|
@@ -97,13 +98,14 @@ English only today; no string catalog yet (Ukrainian is in review as PR #34). De
 | French | fr | 0% | none | 3–5 |
 | Portuguese | pt | 0% | none | 3–5 |
 | Indonesian | id | 0% | none | 3–5 |
-| Japanese | ja | 0% | none | 4–7 |
+| Japanese | ja | ~53% (menus, ribbon, status bar, Preferences) | partial (in review) | 4–7 |
 | German | de | 0% | none | 3–5 |
 | Korean | ko | 0% | none | 4–7 |
 | Vietnamese | vi | 0% | none | 3–5 |
 
-Plus 8–14 h once for the catalog infrastructure. Other languages shipped: none. PowerPoint for Mac
-ships 26.
+The catalog infrastructure is in place (the sibling apps' TSV format, system-language following,
+the Interface language setting and catalog tests); a new language is its catalog file plus one row
+in `LANGUAGES`. Other languages shipped: none. PowerPoint for Mac ships 26.
 
 ## Upcoming
 
@@ -131,6 +133,7 @@ app's JSON control channel (`deckcraft --control PORT`).
 
 | Date | What landed |
 |---|---|
+| 2026-10-21 | Interface language: a per-language TSV catalog (the sibling apps' system), system-language following, and Preferences ▸ Interface language (auto | English | 日本語). The Japanese catalog covers the menus, ribbon tabs and buttons, status bar, command labels, command palette and Preferences; other dialog bodies still English |
 | 2026-10-18 | Native chart sidecar bytes move from JSON arrays into referenced ZIP entries, with shared media byte/item limits and bounded reads; older inline sidecars still load. Synthetic format regressions cover large workbooks and malformed members |
 | 2026-10-17 | Opening a file caps absurd effect sizes (glow, soft edges, shadows, reflections, on shapes, text and table text) at what Format Shape allows: a glow of 10^18 pt in a .pptx made rendering ask for 34 GB and abort |
 | 2026-10-17 | Opening a .deckcraft file whose shapes repeat an id gives the repeats fresh ids (groups, layouts and masters too), so the deck validates and edits by id find one shape |
@@ -239,6 +242,7 @@ app's JSON control channel (`deckcraft --control PORT`).
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-21 | minor | Japanese interface, first step: TSV catalogs, system-language following, the Interface language setting and 554 Japanese strings for menus, ribbon, status bar, command labels, command palette and Preferences; other dialog bodies still English |
 | 2026-10-18 | minor | Native chart payloads use referenced ZIP members and share media byte/item limits; old inline sidecars remain readable. Synthetic tests cover multi-megabyte layout, all shape owners, shared budgets, missing/corrupt members and invalid references. Scores and milestone scope unchanged |
 | 2026-10-15 | trivial | Progress log: chart package parts survive a native save. Scores and milestone names unchanged |
 | 2026-10-15 | trivial | Progress log: PPTX trigger click-step round trip. Feature scores and milestone names unchanged |
