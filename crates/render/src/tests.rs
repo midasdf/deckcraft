@@ -2091,10 +2091,12 @@ fn kumimoji_stands_digits_upright_in_east_asian_vertical_text() {
         assert!(x1 >= x0 && y1 >= y0, "no ink for kumimoji {kumimoji:?}");
         (x1 - x0, y1 - y0)
     };
+    // The digit's aspect ratio depends on the face's "1" (some give it a wide foot), so test the
+    // orientation and the quarter turn rather than a fixed ratio.
     let (side_w, side_h) = ink(None);
-    assert!(side_w > side_h * 2, "eaVert without kumimoji: the digit lies on its side {side_w}x{side_h}");
+    assert!(side_w > side_h, "eaVert without kumimoji: the digit lies on its side {side_w}x{side_h}");
     let (up_w, up_h) = ink(Some(true));
-    assert!(up_h > up_w * 2, "eaVert with kumimoji: the digit stands upright {up_w}x{up_h}");
+    assert!(up_h > up_w, "eaVert with kumimoji: the digit stands upright {up_w}x{up_h}");
     assert!(side_w.abs_diff(up_h) <= 2 && side_h.abs_diff(up_w) <= 2, "turned: {side_w}x{side_h} vs {up_w}x{up_h}");
 }
 
