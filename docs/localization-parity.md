@@ -65,7 +65,7 @@ common misspellings (`crates/engine/src/cmd/review.rs`); see [gaps.md](gaps.md#p
 
 | Date | Change | Summary |
 |---|---|---|
-| 2026-10-21 | major | Japanese interface, first step: the TSV catalog system ported from the sibling apps, system-language following, the Interface language setting (auto | English | 日本語) in Preferences, and 554 Japanese strings covering the menus, ribbon, status bar, command labels, command palette and the Preferences dialog; other dialog bodies still English |
+| 2026-10-21 | major | Japanese interface, first step: the TSV catalog system ported from the sibling apps, system-language following, the Interface language setting (auto \| English \| 日本語) in Preferences, and 554 Japanese strings covering the menus, ribbon, status bar, command labels, command palette and the Preferences dialog; other dialog bodies still English |
 | 2026-10-14 | minor | IME composition in a table cell is underlined in place; the candidate window sits on that cell's caret |
 | 2026-10-12 | minor | IME composition for Chinese, Japanese and Korean, and interface text in any installed script (#101) |
 | 2026-10-10 | major | Created: twelve-language table, ~1,050 UI strings measured, PowerPoint for Mac's 26 languages from its bundle |
