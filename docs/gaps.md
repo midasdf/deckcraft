@@ -21,7 +21,7 @@ revision history.
 | 2 | Data loss and crashes on common paths (#60, #40, #59) | Stability | B | 6–12 | this file |
 | 3 | PPTX round trip drops media options and rewind (#74, #77) | File format | B | 2–4 | [file-format-parity.md](file-format-parity.md) |
 | 4 | SVG pictures don't render (EMF/WMF do) | File format | B | 4–8 | [file-format-parity.md](file-format-parity.md) |
-| 5 | UI English, first Japanese catalog in review: menus, ribbon, status bar and Preferences translated; dialogs, tooltips and help still English | Localization | B (5 languages) | 45–80 | [localization-parity.md](localization-parity.md) |
+| 5 | UI English, second Japanese catalog in review: menus, ribbon, status bar, Preferences and most dialog bodies and messages translated; tooltips and help still English | Localization | B (5 languages) | 45–80 | [localization-parity.md](localization-parity.md) |
 | 6 | No printing | Feature | B | 5–8 | [file-format-parity.md](file-format-parity.md) |
 | 7 | Fonts: only Regular, Bold and Italic faces (#69) | Feature | B | 3–5 | [ui-parity.md](ui-parity.md) |
 | 8 | Image paste fails on Windows and Linux (#53) | Feature | B | 2–4 | [ui-parity.md](ui-parity.md) |
@@ -319,9 +319,9 @@ Detail in [hardware-parity.md](hardware-parity.md).
 
 Detail in [localization-parity.md](localization-parity.md).
 
-- **A Japanese catalog is the first, and most of the UI is still English** (#15, #30; Ukrainian
+- **A Japanese catalog is the first, and some of the UI is still English** (#15, #30; Ukrainian
   PR #34 open). The catalog system, system-language following and the Interface language setting
-  landed with the Japanese catalog (877 entries after the second step: menus, ribbon, status bar,
+  landed with the Japanese catalog (879 entries after the second step: menus, ribbon, status bar,
   command labels, Preferences and most dialog bodies and messages); some tooltips and help text,
   and the engine's status/error messages, still show English. PowerPoint
   for Mac ships 26 languages. A new language is its catalog file plus one row in `LANGUAGES`

@@ -3055,6 +3055,7 @@ fn paragraph_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
                 ("Multiple", "multiple", None),
                 ("Exactly", "exactly", None),
             ] {
+                let label = tl!(label);
                 if ui.selectable_label(line_preset_label(&kind, &value) == label, label).clicked() {
                     picked = Some((k, v));
                 }

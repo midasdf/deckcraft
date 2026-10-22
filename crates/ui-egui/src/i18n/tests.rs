@@ -184,10 +184,12 @@ fn japanese_covers_the_dialogs_and_messages() {
         ("Blank Presentation", "白紙のプレゼンテーション"),
         ("Copy path", "パスをコピー"),
         ("Not saved yet", "まだ保存されていません"),
+        ("No recent presentations match “{query}”.", "「{query}」に一致する最近使ったプレゼンテーションはありません。"),
+        ("No themes or templates match “{query}”.", "「{query}」に一致するテーマまたはテンプレートはありません。"),
     ] {
         assert_eq!(tr(ja, english), japanese, "{english}");
     }
     // A string the catalog does not carry still falls back to English.
     assert_eq!(tr(ja, "A label no catalog has"), "A label no catalog has");
-    assert!(ja.translated_strings() > 800, "{} entries", ja.translated_strings());
+    assert!(ja.translated_strings() >= 879, "{} entries", ja.translated_strings());
 }

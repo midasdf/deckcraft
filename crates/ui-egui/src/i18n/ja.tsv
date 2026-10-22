@@ -880,3 +880,5 @@ Hanging	ぶら下げ
 Exactly	固定値
 1.5 lines	1.5 行
 Multiple	複数
+No recent presentations match “{query}”.	「{query}」に一致する最近使ったプレゼンテーションはありません。
+No themes or templates match “{query}”.	「{query}」に一致するテーマまたはテンプレートはありません。
