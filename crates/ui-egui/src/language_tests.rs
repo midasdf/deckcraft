@@ -11,7 +11,7 @@ use crate::{Services, SlideApp};
 fn harness() -> Harness<'static, SlideApp> {
     let mut app = SlideApp::new(Session::with_new(), Services::default());
     app.ui.tab = "Home".into();
-    let mut h = Harness::builder().with_size(egui::vec2(1600.0, 1000.0)).build_ui_state(
+    let mut h = Harness::builder().with_size(egui::vec2(1600.0, 1000.0)).allow_missing_glyphs().build_ui_state(
         |ui, app: &mut SlideApp| {
             app.logic(ui.ctx());
             app.ui(ui);
