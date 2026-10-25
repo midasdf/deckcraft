@@ -12,7 +12,7 @@ use crate::{Services, SlideApp};
 fn harness() -> Harness<'static, SlideApp> {
     let mut app = SlideApp::new(Session::with_new(), Services::default());
     app.ui.tab = "Insert".into();
-    let mut h = Harness::builder().with_size(egui::vec2(1800.0, 1100.0)).build_ui_state(
+    let mut h = Harness::builder().with_size(egui::vec2(1800.0, 1100.0)).allow_missing_glyphs().build_ui_state(
         |ui, app: &mut SlideApp| {
             app.logic(ui.ctx());
             app.ui(ui);
@@ -39,6 +39,7 @@ fn date_run(h: &Harness<'_, SlideApp>) -> Option<deckcraft_model::Run> {
         .cloned()
 }
 
+/// Insert opens date/time settings, and OK inserts exactly one field.
 #[test]
 fn insert_opens_the_dialog_and_ok_inserts_one_field() {
     let mut h = harness();
@@ -46,7 +47,7 @@ fn insert_opens_the_dialog_and_ok_inserts_one_field() {
     h.run_steps(2);
     assert_eq!(h.state().dialog.as_ref().map(|d| d.id.as_str()), Some("dateTime"));
     let _ = h.get_by_label("Update automatically");
-    let _ = h.get_by_label("English (United States)");
+    assert_eq!(h.get_by_role_and_label(egui::accesskit::Role::ComboBox, "Language").value().as_deref(), Some("English (United States)"));
     let now = deckcraft_text::datetime::DateTime::now_local().unwrap();
     let sample = deckcraft_text::datetime::field_text("datetime2", Some("en-US"), now).unwrap();
     h.get_by_label(&sample).click();
@@ -70,7 +71,7 @@ fn choosing_japanese_lists_and_inserts_a_japanese_date() {
     let mut h = harness();
     h.get_by_label("Date & Time").click();
     h.run_steps(2);
-    h.get_by_label("English (United States)").click();
+    h.get_by_role_and_label(egui::accesskit::Role::ComboBox, "Language").click();
     h.run_steps(2);
     h.get_by_label("Japanese").click();
     h.run_steps(2);
@@ -93,7 +94,7 @@ fn japanese_formats_that_read_the_same_name_their_kind() {
     let mut h = harness();
     h.get_by_label("Date & Time").click();
     h.run_steps(2);
-    h.get_by_label("English (United States)").click();
+    h.get_by_role_and_label(egui::accesskit::Role::ComboBox, "Language").click();
     h.run_steps(2);
     h.get_by_label("Japanese").click();
     h.run_steps(2);
