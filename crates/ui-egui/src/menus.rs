@@ -300,7 +300,10 @@ pub fn menu_tree() -> Vec<(&'static str, Vec<(&'static str, &'static str)>)> {
                 (tl!("Set Up Show…"), "show.setup"),
             ],
         ),
-        ("Help", vec![(tl!("About DeckCraft"), "app.about"), (tl!("Command Palette"), "app.palette")]),
+        (
+            tl!("Help"),
+            vec![(tl!("About DeckCraft"), "app.about"), (tl!("Check for Updates…"), "app.checkUpdates"), (tl!("Command Palette"), "app.palette")],
+        ),
     ]
 }
 
