@@ -1,4 +1,4 @@
-use super::*;
+use super::{Deserialize, LayoutId, MasterId, Serialize, SlideId, Target, qat, theme};
 
 /// The operation the user asked for. Kept with the request so a late completion does not
 /// guess a command from the file name.
@@ -51,7 +51,7 @@ pub enum ViewMode {
 #[serde(default, rename_all = "camelCase")]
 pub struct UiState {
     pub brightness: theme::Brightness,
-    /// Interface language setting: [`i18n::AUTO`] follows the system, otherwise a language code
+    /// Interface language setting: [`crate::i18n::AUTO`] follows the system, otherwise a language code
     /// (`ja`, `en`). Menus, the ribbon, the status bar and the command labels are drawn in it;
     /// command ids, the presentation and file names are not.
     pub language: String,
@@ -101,7 +101,7 @@ impl Default for UiState {
     fn default() -> Self {
         UiState {
             brightness: theme::Brightness::Light,
-            language: i18n::AUTO.into(),
+            language: crate::i18n::AUTO.into(),
             tab: "Home".into(),
             ribbon_collapsed: false,
             view: ViewMode::Normal,
