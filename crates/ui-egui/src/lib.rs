@@ -6,7 +6,7 @@
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 #![forbid(unsafe_code)]
 
-/// An English UI string in the current interface language ([`i18n::t`]).
+/// An English UI string in the current interface language ([`crate::i18n::t`]).
 #[macro_export]
 macro_rules! tl {
     ($s:expr) => {
