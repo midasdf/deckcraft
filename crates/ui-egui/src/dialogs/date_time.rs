@@ -8,7 +8,7 @@ const DATE_LANGS: &[(&str, &str)] = &[
     ("sv-SE", "Swedish"),
 ];
 
-/// Samples `field_text` can compute for `lang`. Named months exist for English and Japanese;
+/// Samples `field_text` can compute for `lang`. English and Japanese compute their own forms;
 /// other languages list the numeric date and the 24-hour times.
 pub(super) fn date_rows(lang: &str) -> Vec<(&'static str, String)> {
     let now = deckcraft_text::datetime::DateTime::now_local();
@@ -41,9 +41,8 @@ pub(super) fn date_time_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) 
     let format = d.get("format", "datetime1");
     egui::ScrollArea::vertical().max_height(280.0).min_scrolled_height(220.0).auto_shrink([false, false]).show(ui, |ui| {
         for (kind, sample) in &rows {
-            // Japanese has no abbreviated month or day names, so several kinds compute the same
-            // text (`datetime3`, `datetime4` and `datetime5` all read e.g. "2026年10月9日"). The
-            // row inserts its kind, so name the kind whenever the sample alone is ambiguous.
+            // Two kinds can compute the same text in some language. The row inserts its kind, so
+            // name the kind whenever the sample alone is ambiguous.
             let ambiguous = rows.iter().filter(|(_, other)| other == sample).count() > 1;
             let label = if ambiguous { format!("{sample} ({kind})") } else { sample.clone() };
             if ui.selectable_label(format == *kind, label).clicked() {
@@ -69,7 +68,7 @@ pub(super) fn date_time_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) 
         });
     });
     ui.label(
-        egui::RichText::new("Month and day names are listed for English and Japanese. Other languages list the numeric date and the 24-hour time.")
+        egui::RichText::new("English and Japanese list their own date and time forms. Other languages list the numeric date and the 24-hour time.")
             .size(11.0)
             .color(Tokens::get(ui.ctx()).text_dim),
     );
