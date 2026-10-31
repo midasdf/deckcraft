@@ -1,7 +1,6 @@
 # Localization parity with PowerPoint
 
 > **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-24 · **Change:** minor (opt-in native LXGW WenKai Lite fallback and interface CJK tests; local implementation only, managed validation pending; previous: minor, Japanese interface, first step: a per-language TSV catalog, system-language following and the Interface language setting; the menus, ribbon, status bar, command labels and the Preferences dialog are drawn in Japanese, other dialog bodies still English; previous: minor, IME composition underlined in table cells; previous: minor, IME composition and CJK interface text, #101; previous: major, created) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
-> **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-21 · **Change:** minor (one proofing language for the whole presentation; previous: minor, IME composition underlined in table cells; previous: minor, IME composition and CJK interface text, #101; previous: major, created) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
 
 DeckCraft's interface is written in English, and a catalog per language
 (`crates/ui-egui/src/i18n/*.tsv`) translates the strings the UI draws: English strings are the
